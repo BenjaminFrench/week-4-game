@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="container">
-
+        
         <div class="jumbotron">
             <h1>Crystal Collector</h1>
             <p class="lead">Click on the crystals to start guessing. Try to get your total equal to the target.</p>
@@ -19,15 +19,34 @@
         
         <div class="row">
             <div class="col-md-12">
+                <div class="panel" id="score-display">
+                    <div class="col-md4" id="target">
+                        <span id="target-label">
+
+                        </span>
+                    </div>
+                    <div class="col-md4" id="score">
+                        <span id="score-label">
+
+                        </span>
+                    </div>
+                    <div class="col-md4" id="winloss">
+                        <span id="winloss">
+
+                        </span>
+                    </div>
+                    
+                </div>
+                
                 <div class="panel">
-                    <img src="./assets/images/ruby.svg" height="200px">
-                    <p>yo yo yo</p>
-                    <p>yo yo yo</p>
-                    <p>yo yo yo</p>
+                    <div id="gem-container">
+                        
+                    </div>
                 </div>
             </div>
         </div>
         
     </div> <!-- /container -->
+    <script src="./assets/javascript/game.js"></script>
 </body>
 </html>
