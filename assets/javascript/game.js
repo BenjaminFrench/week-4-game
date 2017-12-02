@@ -6,34 +6,48 @@ var gemGame = {
     
     // inits the first game and subsequent games
     initGame: function() {
-        // generate a random taget number 
-        this.target = 19 + Math.floor(Math.random() * 101);;
+        // generate a random taget number set label with jQuery
+        this.target = 19 + Math.floor(Math.random() * 101);
+        $("#target-label").html(this.target);
+        
+        // set score label to 0
+        $("#score-label").html("0");
+        
+        // set win and losses label
+        $('#wins-label').html(this.wins);
+        $('#losses-label').html(this.losses);
+        
         // generate 4 gems, each with random point value
+        // create redGem and use jQuery to place it on screen
         var randomPointVal = Math.floor(Math.random() * 12);
-        
-        // create redGem
         var redGem = new gemGame.Gem("red", "./assets/images/gem.png", randomPointVal);
+        $("#gem-container").append('<img id="red-gem" src=' + redGem.imgSrc + ' height="100px">');
         
-        // use jQuery to put the gems on the screen
-        $("#gem-container").append('<img src=' + redGem.imgSrc + ' height="100px">');
-        
-        // create blueGem
+        // create blueGem and use jQuery to place it on screen
+        randomPointVal = Math.floor(Math.random() * 12);
         var blueGem = new gemGame.Gem("blue", "./assets/images/gem.png", randomPointVal);
+        $("#gem-container").append('<img id="blue-gem" src=' + blueGem.imgSrc + ' height="100px">');
         
-        // use jQuery to put the gems on the screen
-        $("#gem-container").append('<img src=' + blueGem.imgSrc + ' height="100px">');
-
-        // create greenGem
+        // create greenGem and use jQuery to place it on screen
+        randomPointVal = Math.floor(Math.random() * 12);
         var greenGem = new gemGame.Gem("green", "./assets/images/gem.png", randomPointVal);
+        $("#gem-container").append('<img id="green-gem" src=' + greenGem.imgSrc + ' height="100px">');
         
-        // use jQuery to put the gems on the screen
-        $("#gem-container").append('<img src=' + greenGem.imgSrc + ' height="100px">');
-        
-        // create yellowGem
+        // create yellowGem and use jQuery to place it on screen
+        randomPointVal = Math.floor(Math.random() * 12);
         var yellowGem = new gemGame.Gem("yellow", "./assets/images/gem.png", randomPointVal);
+        $("#gem-container").append(yellowGem.img);
         
-        // use jQuery to put the gems on the screen
-        $("#gem-container").append('<img src=' + yellowGem.imgSrc + ' height="100px">');
+        
+    },
+    
+    // pass in the gem selected with jQuery
+    pickGem: function(gem) {
+        console.log("picked", gem.getAttribute('points'));
+        this.score += parseInt(gem.getAttribute('points'));
+
+        this.updateDOM();
+        
     },
     
     handleWin: function() {
@@ -45,13 +59,28 @@ var gemGame = {
     },
     
     updateDOM: function() {
-        
+        $("#target-label").html(this.target);
+        $("#score-label").html(this.score);
+        $('#wins-label').html(this.wins);
+        $('#losses-label').html(this.losses);
     },
     
     Gem: function(color, imgSrc, points) {
         this.color = color;
         this.imgSrc = imgSrc;
         this.points = points
-        
+        this.img = $('<img>');
+        this.img.attr('id', color + "-gem");
+        this.img.attr('src', imgSrc);
+        this.img.attr('height', "100px");
+        this.img.attr('width', "100px");
+        this.img.attr('points', points);
+        this.img.click(function() {
+            gemGame.pickGem(this);
+        });
     }
+}
+
+window.onload = function() {
+    gemGame.initGame();
 }
