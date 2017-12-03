@@ -21,17 +21,18 @@ var gemGame = {
         // create redGem and use jQuery to place it on screen
         var randomPointVal = Math.floor(Math.random() * 12);
         var redGem = new gemGame.Gem("red", "./assets/images/gem.png", randomPointVal);
-        $("#gem-container").append('<img id="red-gem" src=' + redGem.imgSrc + ' height="100px">');
-        
+        $("#gem-container").append(redGem.btn);
+        redGem.btn.append(redGem.img);
+    
         // create blueGem and use jQuery to place it on screen
         randomPointVal = Math.floor(Math.random() * 12);
         var blueGem = new gemGame.Gem("blue", "./assets/images/gem.png", randomPointVal);
-        $("#gem-container").append('<img id="blue-gem" src=' + blueGem.imgSrc + ' height="100px">');
+        $("#gem-container").append(blueGem.img);
         
         // create greenGem and use jQuery to place it on screen
         randomPointVal = Math.floor(Math.random() * 12);
         var greenGem = new gemGame.Gem("green", "./assets/images/gem.png", randomPointVal);
-        $("#gem-container").append('<img id="green-gem" src=' + greenGem.imgSrc + ' height="100px">');
+        $("#gem-container").append(greenGem.img);
         
         // create yellowGem and use jQuery to place it on screen
         randomPointVal = Math.floor(Math.random() * 12);
@@ -49,13 +50,22 @@ var gemGame = {
         this.updateDOM();
         
     },
-    
-    handleWin: function() {
-        this.wins++;
+
+    checkForWin: function () {
+        if (this.score === this.target) {
+            this.wins++;
+        
+            return true;
+        }
+        return false;
     },
-    
-    handleLoss: function() {
-        this.losses++;
+
+    checkForLoss: function () {
+        if (this.score > this.target) {
+            this.losses++;
+            return true;
+        }
+        return false;
     },
     
     updateDOM: function() {
@@ -69,6 +79,8 @@ var gemGame = {
         this.color = color;
         this.imgSrc = imgSrc;
         this.points = points
+        this.btn = $('<button>');
+        this.btn.attr('class', "btn btn-default");
         this.img = $('<img>');
         this.img.attr('id', color + "-gem");
         this.img.attr('src', imgSrc);
