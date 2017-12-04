@@ -13,6 +13,8 @@
 <body>
     <div class="container">
         
+        <div id="top-padding"></div>
+
         <div class="jumbotron">
             <h1>Crystal Collector</h1>
             <p class="lead">Click on the crystals to start guessing. Try to get your total equal to the target.</p>
@@ -20,24 +22,54 @@
         
         <div class="row">
             <div class="col-md-12">
-                <div class="panel" id="score-display">
-                    <div class="col-md4" id="target">
-                        <h2>Target: <span id="target-label"></span></h2>
-                    </div>
-                    <div class="col-md4" id="score">
-                        <h2>Score: <span id="score-label"></span></h2>
-                    </div>
-                    <div class="col-md4" id="winloss">
-                            <h2>Wins: <span id="wins-label"></span></h2>
-                            <h2>Losses: <span id="losses-label"></span></h2>
+                <div class="row">
+                    <div class="col-md-3" id="target">
+                        <div class="panel panel-default panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Target</h3>
+                            </div>
+                            <div class="panel-body">
+                                <h2><span id="target-label"></span></h2>
+                            </div>
                         </div>
+                    </div>
                     
+                    <div class="col-md-3" id="score">
+                        <div class="panel panel-default panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Score</h3>
+                            </div>
+                            <div class="panel-body">
+                                <h2><span id="score-label"></span></h2>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="panel panel-default panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Wins</h3>
+                            </div>
+                            <div class="panel-body">
+                                <h2><span id="wins-label"></span></h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default panel-danger">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Losses</h3>
+                            </div>
+                            <div class="panel-body">
+                                <h2><span id="losses-label"></span></h2>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="panel">
-                    <div id="gem-container">
-                        
-                    </div>
+                
+                <div id="gem-container">
+                    
                 </div>
             </div>
         </div>
